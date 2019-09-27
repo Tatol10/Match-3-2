@@ -79,4 +79,47 @@ public class Board : MonoBehaviour
         }
         return false;
     }
+
+    private void DestroyMatchesAt(int row, int column)
+    {
+        if(allDots[row , column].GetComponent<Dot>().match)
+        {
+            Destroy(allDots[row, column]);
+            allDots[row, column] = null;
+        }
+    }
+
+    public void DestroyMatches()
+    {
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < hight; j++)
+            {
+                if (allDots[i, j] != null)
+                {
+                    DestroyMatchesAt(i, j);
+                }
+            }
+        }
+        StartCoroutine(DecreseColumnCo());
+    }
+    private IEnumerator DecreseColumnCo()//hace caer lo de arriba a los espacios vacios
+    {
+        int nullcount = 0;
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < hight; j++)
+            {
+                if (allDots[i, j] == null)
+                {
+                    nullcount ++;
+                }else if (nullcount > 0)
+                {
+                    allDots[i, j].GetComponent<Dot>().column -= nullcount;
+                }
+            }
+            nullcount = 0;
+        }
+        yield return new WaitForSeconds(.4f);
+    }
 }

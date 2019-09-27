@@ -47,7 +47,7 @@ public class Dot : MonoBehaviour
         {
             //moverse al objetivo
             tempPosition = new Vector2(targetX, transform.position.y);
-            transform.position = Vector2.Lerp(transform.position, tempPosition, .4f);
+            transform.position = Vector2.Lerp(transform.position, tempPosition, .6f);
         }
         else
         {
@@ -60,7 +60,7 @@ public class Dot : MonoBehaviour
         {
             //moverse al objetivo
             tempPosition = new Vector2(transform.position.x ,targetY);
-            transform.position = Vector2.Lerp(transform.position, tempPosition, .4f);
+            transform.position = Vector2.Lerp(transform.position, tempPosition, .6f);
         }
         else
         {
@@ -81,6 +81,10 @@ public class Dot : MonoBehaviour
                 otherDot.GetComponent<Dot>().column = column;
                 row = previousR;
                 column = previousC;
+            }
+            else
+            {
+                board.DestroyMatches();//si no vuelven es porque hay match entonces destuirlo
             }
             otherDot = null;
         }
