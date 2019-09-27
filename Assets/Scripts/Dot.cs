@@ -6,6 +6,8 @@ public class Dot : MonoBehaviour
 {
     public int column;
     public int row;
+    public int previousC;
+    public int previousR;
     public int targetX;
     public int targetY;
     public float swipeA = 0;// angulo del swipe
@@ -25,16 +27,18 @@ public class Dot : MonoBehaviour
         targetY = (int)transform.position.y;
         row = targetX;
         column = targetY;
+        previousR = row;
+        previousC = column;
     }
 
     // Update is called once per frame
     void Update()
     {
         FindMatch();
-        if (match == true)
+        if (match)
         {
             SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
-            mySprite.color = new Color(0f, 0f, 0f, .2f); // cambia el color de sprite 
+            mySprite.color = new Color(1f,1f,1f,.2f);// cambia el color de sprite 
         }
         targetX = row;
         targetY = column;
@@ -65,6 +69,22 @@ public class Dot : MonoBehaviour
         }
     }
 
+    public IEnumerator CheckMoveCo()//corutina funciona a la par del update pero cada tiempo determinado
+    {
+        yield return new WaitForSeconds(.5f);//esperar por 0.5 seg
+        if(otherDot != null)
+        {
+            if(!match && !otherDot.GetComponent<Dot>().match)
+            {
+                otherDot.GetComponent<Dot>().row = row;
+                otherDot.GetComponent<Dot>().column = column;
+                row = previousR;
+                column = previousC;
+            }
+            otherDot = null;
+        }
+    }
+
     private void OnMouseDown()
     {
         //Camara to wordpoint sirve para cambiar de posicion de pixeles a coodenadas del mundo
@@ -88,14 +108,14 @@ public class Dot : MonoBehaviour
 
     void DirAngulo()
     {
-        if (swipeA > -45 && swipeA <= 45 && row < board.width)
+        if (swipeA > -45 && swipeA <= 45 && row < board.width-1)
         {
             //derecha
             otherDot = board.allDots[row + 1, column];
             otherDot.GetComponent<Dot>().row -= 1;
             row += 1;
         }
-        else if (swipeA > 45 && swipeA <= 135 && row < board.hight)
+        else if (swipeA > 45 && swipeA <= 135 && row < board.hight-1)
         {
             //arriba
             otherDot = board.allDots[row, column + 1];
@@ -116,17 +136,29 @@ public class Dot : MonoBehaviour
             otherDot.GetComponent<Dot>().column += 1;
             column -= 1;
         }
+        StartCoroutine(CheckMoveCo());
     }
     void FindMatch()
     {
-        if (column > 0 && column < board.width - 1)//no puede haber match si la columna es mas chico que 0 o mas grande que el board
+        if (row > 0 && row < board.width - 1)//no puede haber match si la columna es mas chico que 0 o mas grande que el board
         {
-            GameObject leftDot = board.allDots[column - 1, row];
-            GameObject rightDot = board.allDots[column + 1, row];
+            GameObject leftDot = board.allDots[row - 1, column];
+            GameObject rightDot = board.allDots[row + 1, column];
             if (leftDot.tag == this.gameObject.tag && rightDot.tag == this.gameObject.tag)
             {
                 leftDot.GetComponent<Dot>().match = true;
                 rightDot.GetComponent<Dot>().match = true;
+                match = true;
+            }
+        }
+        if (column > 0 && column < board.hight - 1)//no puede haber match si la columna es mas chico que 0 o mas grande que el board
+        {
+            GameObject downDot = board.allDots[row , column - 1];
+            GameObject upDot = board.allDots[row , column + 1];
+            if (downDot.tag == this.gameObject.tag && upDot.tag == this.gameObject.tag)
+            {
+                downDot.GetComponent<Dot>().match = true;
+                upDot.GetComponent<Dot>().match = true;
                 match = true;
             }
         }
