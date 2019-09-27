@@ -11,6 +11,7 @@ public class Dot : MonoBehaviour
     public int targetX;
     public int targetY;
     public float swipeA = 0;// angulo del swipe
+    public float swipeResist = 1f;//por lo menos tener una unidad de distancia para mover, es para resolver el bug de clikear y que las cosas se mueban
     public bool match = false;//para cheaquear si hay match
     private Board board;// referencia a el tablero
     private GameObject otherDot;//referencia a el otro dot
@@ -101,9 +102,12 @@ public class Dot : MonoBehaviour
     }
 
     void TanAngulo() {
-        swipeA = Mathf.Atan2(lastTouch.y - firstTouch.y, lastTouch.x - firstTouch.x) * 180 / Mathf.PI;//Tangente a la menos 1 del angulo
-        //Debug.Log(swipeA);
-        DirAngulo();
+        if(Mathf.Abs(lastTouch.x - firstTouch.x)> swipeResist || Mathf.Abs(lastTouch.y - firstTouch.y)> swipeResist)
+        {
+            swipeA = Mathf.Atan2(lastTouch.y - firstTouch.y, lastTouch.x - firstTouch.x) * 180 / Mathf.PI;//Tangente a la menos 1 del angulo
+            //Debug.Log(swipeA);
+            DirAngulo();
+        }
     }
 
     void DirAngulo()
@@ -144,23 +148,29 @@ public class Dot : MonoBehaviour
         {
             GameObject leftDot = board.allDots[row - 1, column];
             GameObject rightDot = board.allDots[row + 1, column];
-            if (leftDot.tag == this.gameObject.tag && rightDot.tag == this.gameObject.tag)
+            if (leftDot != null && rightDot != null)
             {
-                leftDot.GetComponent<Dot>().match = true;
-                rightDot.GetComponent<Dot>().match = true;
-                match = true;
-            }
+                if (leftDot.tag == this.gameObject.tag && rightDot.tag == this.gameObject.tag)
+                {
+                    leftDot.GetComponent<Dot>().match = true;
+                    rightDot.GetComponent<Dot>().match = true;
+                    match = true;
+                }
+            } 
         }
         if (column > 0 && column < board.hight - 1)//no puede haber match si la columna es mas chico que 0 o mas grande que el board
         {
             GameObject downDot = board.allDots[row , column - 1];
             GameObject upDot = board.allDots[row , column + 1];
-            if (downDot.tag == this.gameObject.tag && upDot.tag == this.gameObject.tag)
+            if (downDot != null && upDot != null)
             {
-                downDot.GetComponent<Dot>().match = true;
-                upDot.GetComponent<Dot>().match = true;
-                match = true;
-            }
+                if (downDot.tag == this.gameObject.tag && upDot.tag == this.gameObject.tag)
+                {
+                    downDot.GetComponent<Dot>().match = true;
+                    upDot.GetComponent<Dot>().match = true;
+                    match = true;
+                }
+            }  
         }
 
     }
