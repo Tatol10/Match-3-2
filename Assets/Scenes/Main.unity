@@ -212,6 +212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1450760377}
+  - component: {fileID: 1450760379}
   - component: {fileID: 1450760378}
   m_Layer: 0
   m_Name: Board
@@ -243,7 +244,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1450760376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43cf36f63336556418e1e770955f50dc, type: 3}
+  m_Script: {fileID: 11500000, guid: f7f065ab8e207f34fa37103ba04bd425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 2238169068250473700, guid: c08322c15822e574b94bd1f084011132,
@@ -259,3 +260,15 @@ MonoBehaviour:
   - {fileID: 2488631684679257937, guid: 7fb352cb27970054ab5304344b894cc2, type: 3}
   width: 7
   hight: 10
+--- !u!114 &1450760379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450760376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd58c499f8f71b4faa696e292f96503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

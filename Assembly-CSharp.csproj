@@ -241,9 +241,7 @@
     <Compile Include="Assets\GooglePlayGames\PluginVersion.cs" />
     <Compile Include="Assets\GPGSIds.cs" />
     <Compile Include="Assets\Scripts\BackgroundTile.cs" />
-    <Compile Include="Assets\Scripts\Board.cs" />
     <Compile Include="Assets\Scripts\Control.cs" />
-    <Compile Include="Assets\Scripts\Dot.cs" />
     <Compile Include="Assets\Scripts\Model.cs" />
     <Compile Include="Assets\Scripts\View.cs" />
     <None Include="Assets\GooglePlayGames\Plugins\Android\GooglePlayGamesManifest.plugin\AndroidManifest.xml" />

@@ -165,7 +165,7 @@ PlayerSettings:
     Android: com.Leiva.Match3
     Standalone: com.Company.ProductName
   buildNumber: {}
-  AndroidBundleVersionCode: 2
+  AndroidBundleVersionCode: 3
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -258,7 +258,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/Administrador/Desktop/DVM-Leiva.keystore
+  AndroidKeystoreName: '{dedicated}: DVM-Leiva.keystore'
   AndroidKeyaliasName: ignacio
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0

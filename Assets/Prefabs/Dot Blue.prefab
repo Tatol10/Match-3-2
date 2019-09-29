@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6667946944976000093}
   - component: {fileID: 6667946944976000094}
   - component: {fileID: 1932423278060461697}
-  - component: {fileID: 8533414833815844972}
+  - component: {fileID: 8016062691212669818}
   m_Layer: 0
   m_Name: Dot Blue
   m_TagString: Blue
@@ -98,7 +98,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.33333334
---- !u!114 &8533414833815844972
+--- !u!114 &8016062691212669818
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,11 +107,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6667946944976000095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2dfa37e6fb01504a8ef29d168681919, type: 3}
+  m_Script: {fileID: 11500000, guid: 368069461063b484eaecd98727b3622a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   column: 0
   row: 0
+  previousC: 0
+  previousR: 0
   targetX: 0
   targetY: 0
   swipeA: 0
+  swipeResist: 1
+  match: 0
