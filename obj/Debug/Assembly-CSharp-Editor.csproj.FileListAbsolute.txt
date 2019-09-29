@@ -1,0 +1,2 @@
+C:\Users\Tato\Documents\Match 3 2\obj\Debug\Assembly-CSharp-Editor.csprojAssemblyReference.cache
+C:\Users\Tato\Documents\Match 3 2\obj\Debug\Assembly-CSharp-Editor.csproj.CoreCompileInputs.cache

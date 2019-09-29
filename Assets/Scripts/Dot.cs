@@ -48,25 +48,31 @@ public class Dot : MonoBehaviour
             //moverse al objetivo
             tempPosition = new Vector2(targetX, transform.position.y);
             transform.position = Vector2.Lerp(transform.position, tempPosition, .6f);
+            if (board.allDots[row, column] != this.gameObject)
+            {
+                board.allDots[row, column] = this.gameObject;
+            }
         }
         else
         {
             //setear la posicion directamente
             tempPosition = new Vector2(targetX, transform.position.y);
             transform.position = tempPosition;
-            board.allDots[row, column] = this.gameObject;
         }
         if (Mathf.Abs(targetY - transform.position.y) > .1)
         {
             //moverse al objetivo
             tempPosition = new Vector2(transform.position.x ,targetY);
             transform.position = Vector2.Lerp(transform.position, tempPosition, .6f);
+            if (board.allDots[row, column] != this.gameObject)
+            {
+                board.allDots[row, column] = this.gameObject;
+            }
         }
         else
         {
             tempPosition = new Vector2(transform.position.x, targetY);
             transform.position = tempPosition;
-            board.allDots[row, column] = this.gameObject;
         }
     }
 

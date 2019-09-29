@@ -116,10 +116,57 @@ public class Board : MonoBehaviour
                 }else if (nullcount > 0)
                 {
                     allDots[i, j].GetComponent<Dot>().column -= nullcount;
+                    allDots[i, j] = null;
                 }
             }
             nullcount = 0;
         }
         yield return new WaitForSeconds(.4f);
+        StartCoroutine(FillBoardCo());
+    }
+
+    private void RefillBoard()
+    {
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < hight; j++)
+            {
+                if (allDots[i, j] == null)
+                {
+                    Vector2 temPos = new Vector2(i, j);
+                    int dotToUse = Random.Range(0, dots.Length);
+                    GameObject piece = Instantiate(dots[dotToUse], temPos, Quaternion.identity);
+                    allDots[i, j] = piece;
+                }
+            }
+        }
+    }
+    private bool MatchOnBoard()
+    {
+        for(int i = 0; i < width; i++)
+        {
+            for (int j = 0; i < hight; i++)
+            {
+                if (allDots[i, j] != null)
+                {
+                    if (allDots[i, j].GetComponent<Dot>().match)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private IEnumerator FillBoardCo()
+    {
+        RefillBoard();
+        yield return new WaitForSeconds(.5f);
+        while (MatchOnBoard())
+        {
+            yield return new WaitForSeconds(.5f);
+            DestroyMatches();
+        }
     }
 }
