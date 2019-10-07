@@ -705,10 +705,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 1140183b-75b9-46f6-8f8a-9ea3ba3f950c
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: Match 3
+  organizationId: tatol10
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

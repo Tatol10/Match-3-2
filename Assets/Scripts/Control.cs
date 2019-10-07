@@ -82,7 +82,7 @@ public class Control : MonoBehaviour
     {
         for (int i = 0; i < model.width; i++)
         {
-            for (int j = 0; i < model.hight; i++)
+            for (int j = 0; j < model.hight; j++)
             {
                 if (model.allDots[i, j] != null)
                 {
